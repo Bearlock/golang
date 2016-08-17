@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 type Vertex struct {
@@ -11,20 +10,18 @@ type Vertex struct {
 }
 
 func vertexStringFormat(v Vertex) string {
-	xString := strconv.Itoa(v.X)
-	yString := strconv.Itoa(v.Y)
-	return "{" + xString + ", " + yString + "}"
+	return fmt.Sprintf("{%d, %d}", v.X, v.Y)
 }
 
 func main() {
-	
+
 	vertexArray := [3]Vertex{
 		{1, 2},
 		{3, 4},
 		{5, 6},
 	}
 
-	for i := 0; i < len(vertexArray); i++ {
-		fmt.Println(vertexStringFormat(x))
+	for _, vertex := range vertexArray {
+		fmt.Println(vertexStringFormat(vertex))
 	}
 }
