@@ -5,8 +5,10 @@ import (
 	"math"
 )
 
-const InitialStep = float64(1)
-const Delta = .000000001
+const (
+	InitialStep = float64(1)
+	Delta       = .000000001
+)
 
 type ErrNegativeSqrt float64
 
@@ -18,20 +20,20 @@ func newtonsMethod(x float64) (float64, error) {
 	if x < 0 {
 		return 0, ErrNegativeSqrt(x)
 	}
-	
+
 	step := InitialStep
 	previousStep := step
-	
-	for step = newtonsMethodNextStep(x, step); math.Abs(step - previousStep) > Delta; {
+
+	for step = newtonsMethodNextStep(x, step); math.Abs(step-previousStep) > Delta; {
 		previousStep = step
 		step = newtonsMethodNextStep(x, step)
 	}
-	
+
 	return step, nil
 }
 
 func newtonsMethodNextStep(x, step float64) float64 {
-	nextStep := (step - ((step * step) - x) / (2 * step))
+	nextStep := (step - ((step*step)-x)/(2*step))
 	return nextStep
 }
 
