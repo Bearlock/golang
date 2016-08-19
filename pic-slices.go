@@ -5,16 +5,16 @@ import (
 )
 
 func Pic(dx, dy int) [][]uint8 {
-	
+
 	dySlice := make([][]uint8, dy)
-	
-	for outerIndex := range dySlice {	
+
+	for outerIndex := range dySlice {
 		dySlice[outerIndex] = make([]uint8, dx)
-		
+
 		for innerIndex := range dySlice[outerIndex] {
-            dySlice[outerIndex][innerIndex] = uint8((innerIndex ^ outerIndex) * (innerIndex & outerIndex))
-        }
-		
+			dySlice[outerIndex][innerIndex] = uint8((innerIndex ^ outerIndex) * (innerIndex & outerIndex))
+		}
+
 	}
 	return dySlice
 }
