@@ -4,22 +4,30 @@ import (
 	"fmt"
 )
 
+type Person struct {
+	Name string
+}
+
 type Allomancer struct {
-	Name        string
+	Name        *Person
 	MistingType string
 	Metals      string
 }
 
 func NewAllomancer(name, mistingType, metals string) Allomancer {
 	return Allomancer{
-		Name:        name,
+		Name:        &Person{name},
 		MistingType: mistingType,
 		Metals:      metals,
 	}
 }
 
+func (p Person) sayName() string {
+	return fmt.Sprintf("%s", p.Name)
+}
+
 func (mancer Allomancer) stringify() string {
-	return fmt.Sprintf("%s is a %s who burns %s", mancer.Name, mancer.MistingType, mancer.Metals)
+	return fmt.Sprintf("%s is a %s who burns %s", mancer.Name.sayName(), mancer.MistingType, mancer.Metals)
 }
 
 func (mancer *Allomancer) updateTypeAndMetals(mistingType, metals string) {
